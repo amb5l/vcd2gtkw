@@ -14,3 +14,6 @@ This script creates a [GTKWave](https://gtkwave.sourceforge.net/) waveform save 
    gtkw_filename = GTKWave waveform save filename
    levels = hierarchy levels to include (optional), defaults to 0 (all)
  ```
+ Example:
+
+ ![example screenshot](screenshot.png)
