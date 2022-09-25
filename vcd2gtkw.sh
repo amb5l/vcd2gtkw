@@ -29,8 +29,8 @@ if [ -z "$3" ]; then
 else
     levels=$3
 fi
-echo "vcd2gtkw.sh: $1 -> $2 (levels = $3)"
-echo "[\*] vcd2gtkw.sh: $1 -> $2 (levels = $3)" > $gtkw_filename
+echo "vcd2gtkw.sh: $vcd_filename -> $gtkw_filename (levels = $levels)"
+echo "[\*] vcd2gtkw.sh: $vcd_filename -> $gtkw_filename (levels = $levels)" > $gtkw_filename
 declare -a hlevel=() # current hierarchy level
 scope="" # current scope name
 declare -a waves=() # waves gathered for current scope
