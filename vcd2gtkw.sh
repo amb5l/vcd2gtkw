@@ -105,9 +105,16 @@ while read -r line; do # read file line by line
             fi
         elif [ "$cmd" = "var" ]; then
             wave_name=${line_tokens[4]}
-            if [[ "${line_tokens[5]}" == "["*"]" ]]; then # bus wire - concatenate index
-                wave_name="$wave_name${line_tokens[5]}"
-            fi
+			if [ "${line_tokens[1]}" = "wire" ] || [ "${line_tokens[1]}" = "logic" ]; then
+				if [[ "${line_tokens[2]}" == "1" ]]; then
+					if [[ "${line_tokens[5]}" == "["*"]" ]]; then # bus wire bit - concatenate index
+						wave_name="$wave_name${line_tokens[5]}"
+					fi
+				elif [[ "${wave_name}" != *"]" ]]; then # append index range
+					width=$(( ${line_tokens[2]} ))
+					wave_name="$wave_name[$((width-1)):0]"
+				fi
+			fi
             # add signal if not too far down in hierarchy
             if [ $levels -eq 0 ] || [ ${#hlevel[@]} le $levels]; then
                 waves+=("$(join_with . ${hlevel[*]}).$wave_name")
